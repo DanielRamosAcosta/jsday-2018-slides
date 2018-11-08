@@ -1,0 +1,65 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='utf-8')
+    title #{title}
+
+    meta(name='description' content='Human Readable E2E tests')
+    meta(name='author' content='Daniel Ramos')
+
+    meta(name='apple-mobile-web-app-capable' content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style' content='black-translucent')
+
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+
+    link(rel='stylesheet' href='css/reveal.css')
+    link(rel='stylesheet' href='css/theme/night.css')
+
+    link(rel='stylesheet' href='lib/css/zenburn.css')
+
+    style.
+      @media print {
+        h1, h2, h3, h4, h5, h6, p, u, b, a, ul, li {
+          color: black !important;
+        }
+      }
+
+      ul.without-dot {
+        list-style-type: none;
+      }
+
+      span.inline, a.inline {
+        font-family: monospace;
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+        background-color: #404040;
+        font-size: 0.8em;
+      }
+
+
+  body
+    .reveal
+      .slides
+        block content
+    script(src='lib/js/head.min.js')
+    script(src='js/reveal.js')
+    script.
+      Reveal.initialize({
+        defaultTiming: 120,
+        history: true,
+        dependencies: [
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); }},
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true },
+        ]
+      })
+    script.
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }

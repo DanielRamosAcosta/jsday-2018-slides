@@ -1,0 +1,17 @@
+extends helpers/layout.pug
+
+block content
+  section(data-timing=20)
+    h1 Human Readable E2E Testing
+  include 00-intro.pug
+  section
+    h2 Índice
+    ol
+      li Buenas prácticas en Javacript
+      li Buenas prácticas de CSS
+      li Configurando un stack con React
+      li Patrones en React
+      li Rendimiento y reducción de Bugs
+  include 01-puppeteer.pug
+  include 02-cucumber.pug
+  include 03-tests-with-puppeteer-and-cucumber.pug
