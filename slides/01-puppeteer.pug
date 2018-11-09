@@ -1,56 +1,51 @@
 section
   section
     h2 Pupeteer
+    img(src="./assets/puppeteer-logo.png", alt="Puppeteer").clean-img.height20
 
   section
-    h3 Chrome Devtools Protocol
-    img(src="./assets/devtools.png", alt="Captura de la ventana de depuración del Chrome").height35
+    h3 Chrome Devtools
+    img(src="./assets/devtools.png", alt="Captura de la ventana de depuración del Chrome").height40
 
   section
-    h3 Chrome Devtools Protocol
-    video(src="./assets/devtools-animation.mp4", autoplay loop).height35
+    h3 Chrome Devtools
+    video(src="./assets/devtools-animation.mp4", autoplay loop).height40
 
   section
-    h3 Chrome Devtools Protocol
-    video(src="./assets/devtools-coverage.mp4", autoplay loop).height35
+    h3 Chrome Devtools
+    video(src="./assets/devtools-coverage.mp4", autoplay loop).height40
 
   section
-    img(src="./assets/chromium-logo.svg", alt="Chromium").clean-img.height10
-    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height10
-    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height10
-    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height10.fragment.fade-in-then-out
+    img(src="./assets/chromium-logo.svg", alt="Chromium").clean-img.height20
+    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height20
+    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height20
+    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height20.fragment.fade-in-then-out
 
   section
-    img(src="./assets/nodejs-logo.svg", alt="Node.js").clean-img.height10
-    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height10
-    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height10
-    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height10
+    img(src="./assets/nodejs-logo.svg", alt="Node.js").clean-img.height20
+    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height20
+    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height20
+    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height20
 
   section
-    img(src="./assets/docker-node.svg", alt="Dockerized Node.js App").clean-img.height10
-    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height10
-    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height10
-    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height10
+    img(src="./assets/docker-node.svg", alt="Dockerized Node.js App").clean-img.height20
+    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height20
+    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height20
+    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height20
 
   section
-    img(src="./assets/docker-node.svg", alt="Dockerized Node.js App").clean-img.height10
-    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height10
-    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height10
-    img(src="./assets/chromium-logo.svg", alt="Chrome").clean-img.height10
+    img(src="./assets/docker-node.svg", alt="Dockerized Node.js App").clean-img.height20
+    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height20
+    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height20
+    img(src="./assets/chromium-logo.svg", alt="Chrome").clean-img.height20
 
   section
-    img(src="./assets/chrome-inspector.png", alt="Chrome").clean-img.height20
+    img(src="./assets/chrome-inspector.png", alt="Chrome").clean-img.height35
 
   section
     p
       a(href="https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot") https://chromedevtools.github.io/devtools-protocol
     img(src="./assets/chromedevtools-screenshot-api.png", alt="Documentación de la API de captura de pantalla")
-
-  section
-    img(src="./assets/chromium-logo.svg", alt="Chromium").clean-img.height10
-    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height10
-    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height10
-    img(src="./assets/puppeteer-logo.png", alt="Puppeteer").clean-img.height10
 
   section
     pre
@@ -71,11 +66,17 @@ section
           fs.writeFileSync("./micaptura.png", response.result.data, "base64")
         })
 
-    a(href="https://gist.github.com/DanielRamosAcosta/fc818631e673997c9d2cf68123157cc0").inline http://bit.ly/jsday2018-pptr-screensot
+    a(href="http://bit.ly/jsday2018-pptr-screensot").inline http://bit.ly/jsday2018-pptr-screensot
 
 
   section
-    img(src="./assets/chrome-remote-interface.png", alt="Chrome Remote Interface").clean-img.height50
+    img(src="./assets/chrome-remote-interface.png", alt="Chrome Remote Interface").clean-img.height60
+
+  section
+    img(src="./assets/chromium-logo.svg", alt="Chromium").clean-img.height20
+    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height20
+    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height20
+    img(src="./assets/puppeteer-logo.png", alt="Puppeteer").clean-img.height20
 
   section
     pre
@@ -92,22 +93,82 @@ section
         })();
 
   section
-    h3 Slide 9
+    h4 Electron y React Native también implementan el protocolo
+    .center-center
+      img(src="./assets/electron-logo.svg", alt="Electron").clean-img.height20
+      .width5
+      img(src="./assets/react-logo.svg", alt="React").clean-img.height20
 
   section
-    h3 Slide 10
+    h4 Usos de Puppeteer: Exportar a PDF
+    pre
+      code.javascript.
+        await page.goto('http://localhost:3000')
+        await page.pdf({
+          path: 'CV Daniel Ramos.pdf',
+          printBackground: true,
+          margin: {
+            top: '1.016cm',
+            right: '1.016cm',
+            bottom: '1.016cm',
+            left: '1.016cm'
+          }
+        })
+
+        await browser.close()
+
+    a(href="http://bit.ly/jsday2018-pptr-pdf-export").inline http://bit.ly/jsday2018-pptr-pdf-export
 
   section
-    h3 Slide 11
+    h4 Usos de Puppeteer: SSR
+    img(src="./assets/react-snap.png", alt="React Snap usa Puppeteer para renderizar la App").clean-img.height50
 
   section
-    h3 Slide 12
+    h4 Usos de Puppeteer: Scrapping
+    video(src="./assets/harvest-report.mov", autoplay loop).height40
 
   section
-    h3 Slide 13
+    h4 Usos de Puppeteer: Lighthouse
+      pre
+        code.javascript.
+          const url = 'https://github.com/trending'
+          const browser = await puppeteer.launch({
+            headless: false,
+            defaultViewport: null,
+          })
+          const { lhr } = await lighthouse(url, {
+            port: (new URL(browser.wsEndpoint())).port,
+            output: 'json',
+            logLevel: 'info',
+          })
+
+          const output = Object.values(lhr.categories)
+            .map(c => `* ${c.title}: ${c.score}`).join('\n')
+          console.log(output)
+      pre
+        code.
+          * Performance: 0.77
+          * Progressive Web App: 0.58
+          * Accessibility: 0.81
+          * Best Practices: 0.93
+          * SEO: 0.82
 
   section
-    h3 Slide 14
+    h4 Usos de Puppeteer: Carlo
+    img(src="./assets/carlo.png", alt="React Snap usa Puppeteer para renderizar la App").clean-img.height50
+
+    a(href="https://github.com/GoogleChromeLabs/carlo").inline https://github.com/GoogleChromeLabs/carlo
 
   section
-    h3 Slide 15
+    h3 Otros usos
+    ul
+      li Sacar capturas a componentes en StoryBook
+      li PaaS (PDF as a Service)
+      li Usar el sintentizador de voz integrado
+      li Extraer métricas (cubrimiento, rendimiento...)
+
+  section
+    h3 Downsides
+    ul
+      li Sólo funciona con Chrome
+      li La API sigue siendo bastante bajo nivel

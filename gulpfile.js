@@ -1,5 +1,6 @@
 const { src, dest, watch, series, parallel } = require('gulp')
 const pug = require('gulp-pug')
+const browserSync = require('browser-sync')
 
 const OUTPUT_DIR = "./public"
 
@@ -24,18 +25,19 @@ const images = () => src([
 const build = parallel(views, reveal, images)
 
 const serve = () => {
-  const browserSync = require('browser-sync').create()
+  const server = browserSync.create()
 
-  browserSync.init({
+  server.init({
     server: {
       baseDir: OUTPUT_DIR
     }
   })
 
-  watch(['slides/**/*'], parallel(views, images))
+  watch(['slides/**/*.pug'], views)
+  watch(['slides/assets/**/*'], images)
 
   watch([`${OUTPUT_DIR}/**/*`], done => {
-    browserSync.reload()
+    server.reload()
     done()
   });
 }
