@@ -3,28 +3,93 @@ section
     h2 Pupeteer
 
   section
-    h3 Slide 1
+    h3 Chrome Devtools Protocol
+    img(src="./assets/devtools.png", alt="Captura de la ventana de depuración del Chrome").height35
 
   section
-    h3 Slide 2
+    h3 Chrome Devtools Protocol
+    video(src="./assets/devtools-animation.mp4", autoplay loop).height35
 
   section
-    h3 Slide 3
+    h3 Chrome Devtools Protocol
+    video(src="./assets/devtools-coverage.mp4", autoplay loop).height35
 
   section
-    h3 Slide 4
+    img(src="./assets/chromium-logo.svg", alt="Chromium").clean-img.height10
+    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height10
+    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height10
+    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height10.fragment.fade-in-then-out
 
   section
-    h3 Slide 5
+    img(src="./assets/nodejs-logo.svg", alt="Node.js").clean-img.height10
+    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height10
+    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height10
+    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height10
 
   section
-    h3 Slide 6
+    img(src="./assets/docker-node.svg", alt="Dockerized Node.js App").clean-img.height10
+    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height10
+    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height10
+    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height10
 
   section
-    h3 Slide 7
+    img(src="./assets/docker-node.svg", alt="Dockerized Node.js App").clean-img.height10
+    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height10
+    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height10
+    img(src="./assets/chromium-logo.svg", alt="Chrome").clean-img.height10
 
   section
-    h3 Slide 8
+    img(src="./assets/chrome-inspector.png", alt="Chrome").clean-img.height20
+
+  section
+    p
+      a(href="https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot") https://chromedevtools.github.io/devtools-protocol
+    img(src="./assets/chromedevtools-screenshot-api.png", alt="Documentación de la API de captura de pantalla")
+
+  section
+    img(src="./assets/chromium-logo.svg", alt="Chromium").clean-img.height10
+    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height10
+    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height10
+    img(src="./assets/puppeteer-logo.png", alt="Puppeteer").clean-img.height10
+
+  section
+    pre
+      code.javascript.
+        // Abrir Chrome con `--remote-debugging-port=9222`
+        // Obtener el endpoint de la pestaña en: http://localhost:9222/json
+        const ws = new WebSocket("ws://localhost:9222/devtools/page/712C72EAA9E9269F87B6B8087DE886D5")
+
+        ws.on("open", () => {
+          ws.send(JSON.stringify({
+            id: 1,
+            method: "Page.captureScreenshot"
+          }))
+        })
+
+        ws.on("message", responseStr => {
+          const response = JSON.parse(responseStr)
+          fs.writeFileSync("./micaptura.png", response.result.data, "base64")
+        })
+
+    a(href="https://gist.github.com/DanielRamosAcosta/fc818631e673997c9d2cf68123157cc0").inline http://bit.ly/jsday2018-pptr-screensot
+
+
+  section
+    img(src="./assets/chrome-remote-interface.png", alt="Chrome Remote Interface").clean-img.height50
+
+  section
+    pre
+      code.javascript.
+        const puppeteer = require('puppeteer');
+
+        (async () => {
+          const browser = await puppeteer.launch();
+          const page = await browser.newPage();
+          await page.goto('https://example.com');
+          await page.screenshot({path: 'example.png'});
+
+          await browser.close();
+        })();
 
   section
     h3 Slide 9
