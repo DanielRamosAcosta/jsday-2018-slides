@@ -14,14 +14,46 @@ html(lang='es')
 
     link(rel='stylesheet' href='css/reveal.css')
     link(rel='stylesheet' href='css/theme/night.css')
-
     link(rel='stylesheet' href='lib/css/zenburn.css')
+    link(rel='stylesheet' href='https://afeld.github.io/emoji-css/emoji.css')
 
     style.
       @media print {
         h1, h2, h3, h4, h5, h6, p, u, b, a, ul, li {
           color: black !important;
         }
+      }
+
+      .clean-img {
+        background: transparent !important;
+        border: none !important;
+        margin: 0 !important;
+      }
+
+      .height1 { height: 1vh }
+      .height2 { height: 2vh }
+      .height3 { height: 3vh }
+      .height4 { height: 4vh }
+      .height5 { height: 5vh }
+      .height6 { height: 6vh }
+      .height7 { height: 7vh }
+      .height8 { height: 8vh }
+      .height9 { height: 9vh }
+      .height10 { height: 10vh }
+      .height15 { height: 15vh }
+      .height20 { height: 20vh }
+      .height30 { height: 30vh }
+      .height35 { height: 35vh }
+
+      .width1 { width: 1vw }
+      .width5 { width: 5vw }
+
+      .fontx2 { font-size: 1.5em !important }
+
+      .center-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       ul.without-dot {
@@ -38,7 +70,6 @@ html(lang='es')
         font-size: 0.8em;
       }
 
-
   body
     .reveal
       .slides
@@ -50,7 +81,7 @@ html(lang='es')
         defaultTiming: 120,
         history: true,
         dependencies: [
-          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); }},
+          { src: 'plugin/highlight/highlight.js', async: true, callback: () => hljs.initHighlightingOnLoad()},
           { src: 'plugin/zoom-js/zoom.js', async: true },
           { src: 'plugin/notes/notes.js', async: true },
         ]

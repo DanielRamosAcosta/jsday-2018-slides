@@ -15,8 +15,13 @@ const reveal = () => src([
 ], { base: 'node_modules/reveal.js' })
 .pipe(dest(OUTPUT_DIR))
 
+const images = () => src([
+  "slides/assets/**/*",
+], { base: 'slides' })
+.pipe(dest(OUTPUT_DIR))
 
-const build = parallel(views, reveal)
+
+const build = parallel(views, reveal, images)
 
 const serve = () => {
   const browserSync = require('browser-sync').create()
@@ -27,7 +32,7 @@ const serve = () => {
     }
   })
 
-  watch(['slides/**/*'], views)
+  watch(['slides/**/*'], parallel(views, images))
 
   watch([`${OUTPUT_DIR}/**/*`], done => {
     browserSync.reload()
