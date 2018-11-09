@@ -1,21 +1,140 @@
 section
   section
-    h2 Combinando Puppeteer y Cucumber
+    h2 Puppeteer y Cucumber
+    div.center-center
+      img(src="./assets/puppeteer-logo.png", alt="Puppeteer").clean-img.height10
+      .width5
+      img(src="./assets/cucumber-logo.png", alt="Cucumber").clean-img.height10
+    div
+      img(src="./assets/cucumber-y-puppeteer.gif", alt="Cucumber y Puppeteer").clean-img.height20
 
   section
-    h3 Slide 1
+    h3 Ejemplo funcional en Gitlab
+    a(href="http://bit.ly/jsday2018-pptr-e2e").inline bit.ly/jsday2018-pptr-e2e
 
   section
-    h3 Slide 2
+    h3 Organizando el repositorio
+    img(src="./assets/cucumber-puppeteer-estructura.png", alt="Estructura de directorio con Cucumber y Puppeteer").clean-img.height35
 
   section
-    h3 Slide 3
+    h3 Dónde están los steps?
+    img(src="./assets/cucumber-puppeteer-steps.png", alt="Fichero steps").clean-img.height35
 
   section
-    h3 Slide 4
+    h3 Un paso una función
+    pre
+      code.javascript.
+        Given('I am at the {word} page', navigateTo)
+        When('I click in {string} at the header', clickElementAtHeaderRightMenu)
+        When('I enter my username {string} and my password {string}', enterUsernameAndPassword)
+        When('I press the {string} button at the form', pressSubmit)
+        Then('I see the {string} page', currentPageIs);
+        Then('I save a screenshot at {string}', takeScreenshot)
+        Given('the user has logged in', withLoggedUser)
+        Then('I pause', pause)
+        When('I hover the {string} at the header', hoverElementAtHeaderRightMenu)
+        When('I click the {string} link at the plus popup', clickElementAtHeaderPlusIconPopup)
+        Given('I am at the movie details page of {string}', navigateTo)
+        Then('I see {string} as {string} at billed cast', actorAsCharacterAtBilledCast)
+        Then('Then I see {string} at right sidebar in the Genre list', rightSidebarGenreListHasGenre)
 
   section
-    h3 Slide 5
+    h3 Acciones y Aserciones
+    img(src="./assets/cucumber-puppeteer-actions-assertions.png", alt="Fichero steps").clean-img.height35
+    ul
+      li Acciones: Navegar a una página, hacer click en un botón, rellenar un formulario
+      li Aserciones: Veo la página de login, veo 4 tarjetas
+
+  section
+    h3 Hacer click en algún sitio
+    pre
+      code.javascript.
+        async function clickElement (ctx, selectorScope, elementKey) {
+          const selector = getSelector(selectorScope, elementKey)
+
+          const page = await ctx.getPage()
+          await page.waitForSelector(selector)
+          await page.click(selector)
+        }
+        // steps.js
+        Then('I click the "Login Button"', (ctx, elementKey) => clickElement(ctx, selectors.header.rightMenu, elementKey))
+
+  section
+    h3 Hacer click en algún sitio
+    pre
+      code.javascript.
+        function clickElement (selectorScope) {
+          return async function (ctx, elementKey) {
+            const selector = getSelector(selectorScope, elementKey)
+
+            const page = await ctx.getPage()
+            await page.waitForSelector(selector)
+            await page.click(selector)
+          }
+        }
+
+        const clickElementAtHeaderRightMenu = clickElement(selectors.header.rightMenu)
+        // steps.js
+        Then('I click the "Login Button"', clickElementAtHeaderRightMenu)
+
+  section
+    h3 Hacer click en algún sitio
+    pre
+      code.javascript.
+        const clickElement = selectorScope => async (ctx, elementKey) => {
+          const selector = getSelector(selectorScope, elementKey)
+
+          const page = await ctx.getPage()
+          await page.waitForSelector(selector)
+          await page.click(selector)
+        }
+        const clickElementAtHeaderRightMenu = clickElement(selectors.header.rightMenu)
+        // steps.js
+        Then('I click the "Login Button"', clickElementAtHeaderRightMenu)
+
+  section
+    h3 Combinar varios pasos en uno solo
+    pre
+      code.javascript.
+        const typeUsernameAtLogin = typeAt(selectors.login.usernameInput)
+        const typePasswordAtLogin = typeAt(selectors.login.passwordInput)
+
+        export const enterUsernameAndPassword = joinSteps(
+          typeUsernameAtLogin,
+          typePasswordAtLogin
+        )
+
+  section
+    h3 Combinar varios pasos en uno solo
+    pre
+      code.gherkin.
+        Scenario: User logs in and sees its profile
+          Given I am at the home page
+          When I click in "Login" at the header
+          And I enter my username "testuser123999" and my password "foobar123"
+          And I press the "submit" button at the form
+          Then I see the "Profile" page
+          And I save a screenshot at "profile-new-user.png"
+
+  section
+    h3 Combinar varios pasos en uno solo
+    pre
+      code.gherkin.
+          Scenario: Reach the Add New Movie page
+            Given the user has logged in
+            # (...)
+
+  section
+    h3 Combinar varios pasos en uno solo
+    pre
+      code.javascript.
+        Scenario: User logs in and sees its profile
+          Given I am at the home page
+          When I click in "Login" at the header
+          And I enter my username "testuser123999" and my password "foobar123"
+          And I press the "submit" button at the form
+          Then I see the "Profile" page
+          And I save a screenshot at "profile-new-user.png"
 
   section
     h3 Slide 6
