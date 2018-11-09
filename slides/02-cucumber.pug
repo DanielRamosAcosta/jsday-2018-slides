@@ -1,48 +1,90 @@
 section
   section
     h2 Cucumber
+    img(src="./assets/cucumber-logo.png", alt="Cucumber").clean-img.height20
 
   section
-    h3 Slide 1
+    h3 Que desventajas tienen otros test runners?
+    pre
+      code.javascript.
+        context('Navigation', () => {
+          beforeEach(() => {
+            cy.visit('http://localhost:8080')
+            cy.get('.navbar-nav').contains('Commands').click()
+            cy.get('.dropdown-menu').contains('Navigation').click()
+          })
+
+          it('cy.go() - go back or forward in the browser\'s history', () => {
+            // https://on.cypress.io/go
+
+            cy.location('pathname').should('include', 'navigation')
+
+            cy.go('back')
+            cy.location('pathname').should('not.include', 'navigation')
+
+            cy.go('forward')
+            cy.location('pathname').should('include', 'navigation')
+
+            // clicking back
+            cy.go(-1)
+            cy.location('pathname').should('not.include', 'navigation')
+
+            // clicking forward
+            cy.go(1)
+            cy.location('pathname').should('include', 'navigation')
+          })
 
   section
-    h3 Slide 2
+    h3 Tests legibles por no programadores. Gherkin
+    pre
+      code.gherkin.
+        Scenario: See the genres of Pulp Fiction
+          Given I am logged in
+          When I navigate to the movie details page of "Pulp Fiction"
+          Then I see "Thriller" at right sidebar in the Genre list
+          And I see "Crime" at right sidebar in the Genre list
 
   section
-    h3 Slide 3
+    h3 Soporte multidioma
+    pre
+      code.gherkin.
+        # language: es
+
+        Escenario: Ver el género de Pulp Fiction
+          Dado Que he iniciado sesión
+          Cuando navego a los detalles de la película "Pulp Fiction"
+          Entonces veo "Thriller" en la lista de géneros de la barra lateral
+          Y veo "Crimen" en la lista de géneros de la barra lateral
+    a(href="https://docs.cucumber.io/gherkin/reference/#spoken-languages").inline docs.cucumber.io/gherkin/reference/#spoken-languages
 
   section
-    h3 Slide 4
+    h3 Soporte multidioma
+    pre
+      code.gherkin.
+        # language: em
+
+        📕: See the genres of Pulp Fiction
+          😐 I am logged in
+          🎬 I navigate to the movie details page of "Pulp Fiction"
+          🙏 I see "Thriller" at right sidebar in the Genre list
+          😂 I see "Crime" at right sidebar in the Genre list
+
+    a(href="https://docs.cucumber.io/gherkin/reference/#spoken-languages").inline docs.cucumber.io/gherkin/reference/#spoken-languages
 
   section
-    h3 Slide 5
+    h3 Y el código done está?
+    img(src="assets/magic.gif", autoplay loop).height40
 
   section
-    h3 Slide 6
+    h3 Y el código done está?
+    pre
+      code.javascript.
+        Then('Then I see {string} at right sidebar in the Genre list', async (genreName) => {
+          // throw si algo va mal
+        })
 
-  section
-    h3 Slide 7
-
-  section
-    h3 Slide 8
-
-  section
-    h3 Slide 9
-
-  section
-    h3 Slide 10
-
-  section
-    h3 Slide 11
-
-  section
-    h3 Slide 12
-
-  section
-    h3 Slide 13
-
-  section
-    h3 Slide 14
-
-  section
-    h3 Slide 15
+    pre
+      code.javascript.
+        Then(/Then I see "(\w+?)" at right sidebar in the Genre list/, async (genreName) => {
+          // throw si algo va mal
+        })
