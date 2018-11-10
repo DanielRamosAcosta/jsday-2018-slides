@@ -128,25 +128,172 @@ section
     h3 Combinar varios pasos en uno solo
     pre
       code.javascript.
-        Scenario: User logs in and sees its profile
-          Given I am at the home page
-          When I click in "Login" at the header
-          And I enter my username "testuser123999" and my password "foobar123"
-          And I press the "submit" button at the form
-          Then I see the "Profile" page
-          And I save a screenshot at "profile-new-user.png"
+        Given('the user has logged in', withLoggedUser)
+
+        async function withLoggedUser (ctx) {
+          await navigateTo(ctx, 'login'),
+          await enterUsernameAndPassword(ctx, 'testuser123999', 'foobar123')
+          await pressSubmit(ctx, 'submit')
+          await sleep(ctx, 1)
+        }
 
   section
-    h3 Slide 6
+    h3 No hay soporte para distribución de argumentos
+    pre
+      code.javascript.
+        Then('I save a screenshot at {string}', async function(...args) {
+          console.log(args)
+        })
+    pre
+      code.
+        × And I save a screenshot at "profile-new-user.png" # features\support\steps.js:21
+            function has 0 arguments, should have 1 (if synchronous or returning a promise) or 2 (if accepting a callback)
 
   section
-    h3 Slide 7
+    h3 ¿Dónde incializamos Puppeteer? En "El Mundo"
+    pre
+      code.
+        class CustomWorld {
+          constructor() {
+            this._browser = scope.browser
+            this._page = null
+          }
+
+          async getPage () {
+            if (!this._page) {
+              this._page = await this._browser.newPage();
+              await this._page.setExtraHTTPHeaders({'Accept-Language': 'en'});
+            }
+            return this._page
+          }
+
+          async closePage () {
+            if (this._page) {
+              // Wait for https://github.com/GoogleChrome/puppeteer/issues/645
+              const client = await this._page.target().createCDPSession();
+              await client.send('Network.clearBrowserCookies');
+              await this._page.close()
+              this._page = null
+            }
+          }
+        }
 
   section
-    h3 Slide 8
+    h3 Accedemos al mundo a través del this
+    pre
+      code.javascript.
+        Then('I save a screenshot at {string}', async function(page) {
+          console.log(this.page) // Ok!
+        })
+
+    pre
+      code.javascript.
+        Then('I save a screenshot at {string}', async (page) => {
+          console.log(this.page) // Error!
+        })
 
   section
-    h3 Slide 9
+    h3 Arreglando la pérdida this y la longitud de argumentos
+    pre
+      code.javascript.
+        export const bind0 = fn => function () {
+          return fn(this)
+        }
+
+        export const bind1 = fn => function (arg1) {
+          return fn(this, arg1)
+        }
+
+        export const bind2 = fn => function (arg1, arg2) {
+          return fn(this, arg1, arg2)
+        }
+
+        export const bind3 = fn => function (arg1, arg2, arg3) {
+          return fn(this, arg1, arg2, arg3)
+        }
+
+  section
+    h3 Arreglando la pérdida this y la longitud de argumentos
+    pre
+      code.
+        Given('I am at the {word} page', bind1(navigateTo))
+
+        export async function navigateTo(ctx, pageKey) {
+          const page = await ctx.getPage()
+          await page.goto(getUrl(navigation, pageKey))
+        }
+
+  section
+    h3 Creando selectores fáciles de tracear
+    img(src="assets/traceable-selectors.png", alt="Flecha señalando al login en la cabecera")
+    pre
+      code.
+        page.click(selectors.header.rightMenu.Login)
+
+  section
+    h3 Creando selectores fáciles de tracear
+    pre
+      code.
+        export const selectors = {
+          title: 'title',
+          header: nestedSelector('header', {
+            rightMenu: nestedSelector('.right .primary', {
+              'plus icon': nestedSelector('li:first-child > div', {
+                'Add New Movie': 'a[href="/movie/new"]'
+              }),
+              Login: 'a[href="/login"]',
+              'Sign Up': 'a[href="/account/signup"]',
+            })
+          }),
+          login: {
+            usernameInput: '#username',
+            passwordInput: '#password'
+          },
+          movieDetails: {
+            topBilled: nestedSelector('section.top_billed', {
+              eachActor: nestedSelector('.card', {
+                actorName: 'p a',
+                characterName: '.character',
+              })
+            }),
+            eachGenre: 'section.genres li'
+          },
+          commonElements: {
+            submit: `main input[type="submit"]`
+          }
+        };
+
+  section
+    h3 Creando selectores fáciles de tracear
+    pre
+      code.
+        console.log(selectors.header.rightMenu.Login)
+        // 'header .right .primary a[href="/login"]'
+
+
+  section
+    h3 Ventajas con Puppeteer
+    h4 Coverage out of the Box
+    pre
+      code.
+        // getPage
+        await Promise.all([
+          this._page.coverage.startJSCoverage(),
+          this._page.coverage.startCSSCoverage()
+        ]);
+
+        // closePage
+        const [jsCoverage, cssCoverage] = await Promise.all([
+          this._page.coverage.stopJSCoverage(),
+          this._page.coverage.stopCSSCoverage(),
+        ]);
+        pti.write(jsCoverage)
+
+  section
+    h3 Ventajas con Puppeteer
+    h4 Coverage out of the Box
+    img(src="assets/coverage.png", alt="Captura del cubrimiento de la página web")
+
 
   section
     h3 Slide 10
