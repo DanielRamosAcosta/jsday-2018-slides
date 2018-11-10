@@ -9,11 +9,11 @@ section
 
   section
     h3 Chrome Devtools
-    video(src="./assets/devtools-animation.mp4", autoplay loop).height40
+    img(src="./assets/devtools-animation.gif").height40
 
   section
     h3 Chrome Devtools
-    video(src="./assets/devtools-coverage.mp4", autoplay loop).height40
+    img(src="./assets/devtools-coverage.gif").height40
 
   section
     img(src="./assets/chromium-logo.svg", alt="Chromium").clean-img.height20
@@ -32,8 +32,8 @@ section
     img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height20
 
     pre
-        code.
-          ./node --inspect miscript.js
+      code.
+        ./node --inspect miscript.js
 
   section
     .center-center
@@ -60,9 +60,9 @@ section
       img(src="./assets/react-logo.svg", alt="React").clean-img.height20
 
   section
-    p
-      a(href="https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot").inline https://chromedevtools.github.io/devtools-protocol
     img(src="./assets/chromedevtools-screenshot-api.png", alt="Documentación de la API de captura de pantalla")
+    p
+      a(href="https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot").inline chromedevtools.github.io/devtools-protocol
 
   section
     pre
@@ -138,7 +138,8 @@ section
 
   section
     h4 Usos de Puppeteer: Scrapping
-    video(src="./assets/harvest-report.mov", autoplay loop).height40
+    div
+      img(src="./assets/harvest-report.gif").height40
     a(href="http://bit.ly/jsday2018-pptr-harvest").inline bit.ly/jsday2018-pptr-harvest
 
   section
@@ -146,10 +147,7 @@ section
       pre
         code.javascript.
           const url = 'https://github.com/trending'
-          const browser = await puppeteer.launch({
-            headless: false,
-            defaultViewport: null,
-          })
+          const browser = await puppeteer.launch({ headless: false, defaultViewport: null})
           const { lhr } = await lighthouse(url, {
             port: (new URL(browser.wsEndpoint())).port,
             output: 'json',
@@ -171,7 +169,8 @@ section
 
   section
     h4 Usos de Puppeteer: Carlo
-    img(src="./assets/carlo.png", alt="React Snap usa Puppeteer para renderizar la App").clean-img.height50
+    div
+      img(src="./assets/carlo.png", alt="React Snap usa Puppeteer para renderizar la App").clean-img.height50
 
     a(href="https://github.com/GoogleChromeLabs/carlo").inline https://github.com/GoogleChromeLabs/carlo
 

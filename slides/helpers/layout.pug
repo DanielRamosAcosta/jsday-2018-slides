@@ -13,9 +13,106 @@ html(lang='es')
     meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
 
     link(rel='stylesheet' href='css/reveal.css')
-    link(rel='stylesheet' href='css/theme/night.css')
-    link(rel='stylesheet' href='lib/css/zenburn.css')
-    link(rel='stylesheet' href='https://afeld.github.io/emoji-css/emoji.css')
+    link(rel='stylesheet' href='css/theme/white.css')
+
+    style.
+      /*
+      github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+      */
+
+      .hljs {
+        display: block;
+        overflow-x: auto;
+        padding: 0.5em;
+        color: #333;
+        background: #f8f8f8;
+      }
+
+      .hljs-comment,
+      .hljs-quote {
+        color: #998;
+        font-style: italic;
+      }
+
+      .hljs-keyword,
+      .hljs-selector-tag,
+      .hljs-subst {
+        color: #333;
+        font-weight: bold;
+      }
+
+      .hljs-number,
+      .hljs-literal,
+      .hljs-variable,
+      .hljs-template-variable,
+      .hljs-tag .hljs-attr {
+        color: #008080;
+      }
+
+      .hljs-string,
+      .hljs-doctag {
+        color: #d14;
+      }
+
+      .hljs-title,
+      .hljs-section,
+      .hljs-selector-id {
+        color: #900;
+        font-weight: bold;
+      }
+
+      .hljs-subst {
+        font-weight: normal;
+      }
+
+      .hljs-type,
+      .hljs-class .hljs-title {
+        color: #458;
+        font-weight: bold;
+      }
+
+      .hljs-tag,
+      .hljs-name,
+      .hljs-attribute {
+        color: #000080;
+        font-weight: normal;
+      }
+
+      .hljs-regexp,
+      .hljs-link {
+        color: #009926;
+      }
+
+      .hljs-symbol,
+      .hljs-bullet {
+        color: #990073;
+      }
+
+      .hljs-built_in,
+      .hljs-builtin-name {
+        color: #0086b3;
+      }
+
+      .hljs-meta {
+        color: #999;
+        font-weight: bold;
+      }
+
+      .hljs-deletion {
+        background: #fdd;
+      }
+
+      .hljs-addition {
+        background: #dfd;
+      }
+
+      .hljs-emphasis {
+        font-style: italic;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
 
     style.
       @media print {
@@ -77,8 +174,20 @@ html(lang='es')
         border-radius: 10px;
         padding-right: 10px;
         padding-left: 10px;
-        background-color: #404040;
+        background-color: #f0f0f0;
         font-size: 0.8em;
+      }
+
+      pre {
+        width: 90vw
+      }
+
+      code {
+        width: 100%
+      }
+
+      .slides {
+        width: auto !important;
       }
 
   body

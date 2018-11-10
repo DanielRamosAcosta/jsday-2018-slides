@@ -10,7 +10,7 @@ section
 
   section
     h3 ¿Qué son Tests E2E?
-    video(src="./assets/puppeteer-execution.mov" autoplay loop).height35
+    img(src="./assets/puppeteer-execution.gif").height35
 
   section
     img(src="./assets/tests-e2e-mal.png", alt="Cucumber").clean-img.height50
@@ -20,8 +20,36 @@ section
     a(href="http://bit.ly/jsday2018-pptr-e2e").inline bit.ly/jsday2018-pptr-e2e
 
   section
-    h3 Organizando el repositorio
-    img(src="./assets/cucumber-puppeteer-estructura.png", alt="Estructura de directorio con Cucumber y Puppeteer").clean-img.height35
+    h3 Organizando el proyecto
+    img(src="./assets/cucumber-puppeteer-estructura.png", alt="Estructura de directorio con Cucumber y Puppeteer").cleamn-img.height35
+
+  section
+    h3 ¿Dónde incializamos Puppeteer?
+    img(src="./assets/cucumber-puppeteer-world.png", alt="Fichero steps").clean-img.height35
+
+  section
+    h3 ¿Dónde incializamos Puppeteer?
+    h3 En "El Mundo"
+    pre
+      code.
+        class CustomWorld {
+          _browser = scope.browser
+          _page = null
+
+          async getPage () {
+            if (!this._page) {
+              this._page = await this._browser.newPage();
+            }
+            return this._page
+          }
+
+          async closePage () {
+            if (this._page) {
+              await this._page.close()
+              this._page = null
+            }
+          }
+        }
 
   section
     h3 Dónde están los steps?
@@ -131,35 +159,6 @@ section
           await enterUsernameAndPassword(ctx, 'testuser123999', 'foobar123')
           await pressSubmit(ctx, 'submit')
           await sleep(ctx, 1)
-        }
-
-  section
-    h3 ¿Dónde incializamos Puppeteer? En "El Mundo"
-    pre
-      code.
-        class CustomWorld {
-          constructor() {
-            this._browser = scope.browser
-            this._page = null
-          }
-
-          async getPage () {
-            if (!this._page) {
-              this._page = await this._browser.newPage();
-              await this._page.setExtraHTTPHeaders({'Accept-Language': 'en'});
-            }
-            return this._page
-          }
-
-          async closePage () {
-            if (this._page) {
-              // Wait for https://github.com/GoogleChrome/puppeteer/issues/645
-              const client = await this._page.target().createCDPSession();
-              await client.send('Network.clearBrowserCookies');
-              await this._page.close()
-              this._page = null
-            }
-          }
         }
 
   section
