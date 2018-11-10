@@ -9,6 +9,13 @@ section
       img(src="./assets/cucumber-y-puppeteer.gif", alt="Cucumber y Puppeteer").clean-img.height20
 
   section
+    h3 ¿Qué son Tests E2E?
+    video(src="./assets/puppeteer-execution.mov" autoplay loop).height35
+
+  section
+    img(src="./assets/tests-e2e-mal.png", alt="Cucumber").clean-img.height50
+
+  section
     h3 Ejemplo funcional en Gitlab
     a(href="http://bit.ly/jsday2018-pptr-e2e").inline bit.ly/jsday2018-pptr-e2e
 
@@ -25,18 +32,8 @@ section
     pre
       code.javascript.
         Given('I am at the {word} page', navigateTo)
-        When('I click in {string} at the header', clickElementAtHeaderRightMenu)
         When('I enter my username {string} and my password {string}', enterUsernameAndPassword)
-        When('I press the {string} button at the form', pressSubmit)
         Then('I see the {string} page', currentPageIs);
-        Then('I save a screenshot at {string}', takeScreenshot)
-        Given('the user has logged in', withLoggedUser)
-        Then('I pause', pause)
-        When('I hover the {string} at the header', hoverElementAtHeaderRightMenu)
-        When('I click the {string} link at the plus popup', clickElementAtHeaderPlusIconPopup)
-        Given('I am at the movie details page of {string}', navigateTo)
-        Then('I see {string} as {string} at billed cast', actorAsCharacterAtBilledCast)
-        Then('Then I see {string} at right sidebar in the Genre list', rightSidebarGenreListHasGenre)
 
   section
     h3 Acciones y Aserciones
@@ -53,11 +50,10 @@ section
           const selector = getSelector(selectorScope, elementKey)
 
           const page = await ctx.getPage()
-          await page.waitForSelector(selector)
           await page.click(selector)
         }
         // steps.js
-        Then('I click the "Login Button"', (ctx, elementKey) => clickElement(ctx, selectors.header.rightMenu, elementKey))
+        Then('I click the {string}', (ctx, elementKey) => clickElement(ctx, selectors.header.rightMenu, elementKey))
 
   section
     h3 Hacer click en algún sitio
@@ -68,7 +64,6 @@ section
             const selector = getSelector(selectorScope, elementKey)
 
             const page = await ctx.getPage()
-            await page.waitForSelector(selector)
             await page.click(selector)
           }
         }
@@ -85,7 +80,6 @@ section
           const selector = getSelector(selectorScope, elementKey)
 
           const page = await ctx.getPage()
-          await page.waitForSelector(selector)
           await page.click(selector)
         }
         const clickElementAtHeaderRightMenu = clickElement(selectors.header.rightMenu)
@@ -103,6 +97,8 @@ section
           typeUsernameAtLogin,
           typePasswordAtLogin
         )
+        // steps.js
+        When('I enter my username {string} and my password {string}', enterUsernameAndPassword)
 
   section
     h3 Combinar varios pasos en uno solo
@@ -136,18 +132,6 @@ section
           await pressSubmit(ctx, 'submit')
           await sleep(ctx, 1)
         }
-
-  section
-    h3 No hay soporte para distribución de argumentos
-    pre
-      code.javascript.
-        Then('I save a screenshot at {string}', async function(...args) {
-          console.log(args)
-        })
-    pre
-      code.
-        × And I save a screenshot at "profile-new-user.png" # features\support\steps.js:21
-            function has 0 arguments, should have 1 (if synchronous or returning a promise) or 2 (if accepting a callback)
 
   section
     h3 ¿Dónde incializamos Puppeteer? En "El Mundo"
@@ -191,6 +175,19 @@ section
         Then('I save a screenshot at {string}', async (page) => {
           console.log(this.page) // Error!
         })
+
+
+  section
+    h3 No hay soporte para distribución de argumentos
+    pre
+      code.javascript.
+        Then('I save a screenshot at {string}', async function(...args) {
+          console.log(args)
+        })
+    pre
+      code.
+        × And I save a screenshot at "profile-new-user.png" # features\support\steps.js:21
+            function has 0 arguments, should have 1 (if synchronous or returning a promise) or 2 (if accepting a callback)
 
   section
     h3 Arreglando la pérdida this y la longitud de argumentos
@@ -270,6 +267,19 @@ section
         console.log(selectors.header.rightMenu.Login)
         // 'header .right .primary a[href="/login"]'
 
+  section
+    h3 Evitar seleccionar por elementos del DOM / clases
+    pre.fragment
+      code.jsx.
+        const MyButton = () => (
+          <div data-test-id="super-boton">
+            <button>Soy un Botón</button>
+          </div>
+        )
+    a(href="https://www.npmjs.com/package/babel-plugin-jsx-remove-data-test-id").inline.fragment babel-plugin-jsx-remove-data-test-id
+
+  section
+    h3 Ventajas con Puppeteer
 
   section
     h3 Ventajas con Puppeteer
@@ -294,21 +304,40 @@ section
     h4 Coverage out of the Box
     img(src="assets/coverage.png", alt="Captura del cubrimiento de la página web")
 
+  section
+    h3 Ventajas con Puppeteer
+    h4 Obtener perfil de rendimiento
+    img(src="assets/preformance-profile.png", alt="Cargar perfil de rendimiento")
 
   section
-    h3 Slide 10
+    h3 Ventajas con Puppeteer
+    h4 Obtener perfil de rendimiento
+    pre
+      code.gherkin.
+        Scenario: # ...
+          Given I start tracing
+          # ...
+          Then I stop tracing
+
 
   section
-    h3 Slide 11
-
+    h3 Ventajas con Puppeteer
+    h4 Interceptar peticiones de red
+    pre
+      code.javascript.
+        await page.setRequestInterception(true);
+        page.on('request', interceptedRequest => {
+          if (interceptedRequest.url().endsWith('analytics.js')) {
+            interceptedRequest.abort()
+          } else{
+            interceptedRequest.continue()
+          }
+        })
   section
-    h3 Slide 12
+    h3 Ventajas con Puppeteer
+    h3 Depuración
+    pre
+      code.gherkin.
+        Then I place a breakpoint in "funcionesB4.js" at line number 97
 
-  section
-    h3 Slide 13
-
-  section
-    h3 Slide 14
-
-  section
-    h3 Slide 15
+    a(href="http://bit.ly/jsday2018-pptr-breakpoint").inline bit.ly/jsday2018-pptr-breakpoint

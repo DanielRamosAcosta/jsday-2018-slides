@@ -19,7 +19,11 @@ section
     img(src="./assets/chromium-logo.svg", alt="Chromium").clean-img.height20
     img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height20
     img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height20
-    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height20.fragment.fade-in-then-out
+    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height20.fragment
+
+    pre.fragment
+      code.
+        ./chrome --remote-debugging-port=9222
 
   section
     img(src="./assets/nodejs-logo.svg", alt="Node.js").clean-img.height20
@@ -27,20 +31,33 @@ section
     img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height20
     img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height20
 
-  section
-    img(src="./assets/docker-node.svg", alt="Dockerized Node.js App").clean-img.height20
-    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height20
-    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height20
-    img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height20
+    pre
+        code.
+          ./node --inspect miscript.js
 
   section
-    img(src="./assets/docker-node.svg", alt="Dockerized Node.js App").clean-img.height20
-    img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height20
-    img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height20
-    img(src="./assets/chromium-logo.svg", alt="Chrome").clean-img.height20
+    .center-center
+      img(src="./assets/docker-node.svg", alt="Dockerized Node.js App").clean-img.height20
+      img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height20
+      img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height20
+      img(src="./assets/vscode-logo.svg", alt="VS Code Logo").clean-img.height15
+
+  section
+    .center-center
+      img(src="./assets/docker-node.svg", alt="Dockerized Node.js App").clean-img.height20
+      img(src="./assets/devtools-logo.png", alt="Devtools").clean-img.height20
+      img(src="./assets/bidirectional-arrow.svg", alt="Flecha bidireccional").clean-img.marginSides2.height20
+      img(src="./assets/chromium-logo.svg", alt="Chrome").clean-img.height15
 
   section
     img(src="./assets/chrome-inspector.png", alt="Chrome").clean-img.height35
+
+  section
+    h4 Electron y React Native también implementan el protocolo
+    .center-center
+      img(src="./assets/electron-logo.svg", alt="Electron").clean-img.height20
+      .width5
+      img(src="./assets/react-logo.svg", alt="React").clean-img.height20
 
   section
     p
@@ -93,11 +110,7 @@ section
         })();
 
   section
-    h4 Electron y React Native también implementan el protocolo
-    .center-center
-      img(src="./assets/electron-logo.svg", alt="Electron").clean-img.height20
-      .width5
-      img(src="./assets/react-logo.svg", alt="React").clean-img.height20
+    h3 Ejemplos!
 
   section
     h4 Usos de Puppeteer: Exportar a PDF
@@ -121,7 +134,7 @@ section
 
   section
     h4 Usos de Puppeteer: SSR
-    img(src="./assets/react-snap.png", alt="React Snap usa Puppeteer para renderizar la App").clean-img.height50
+    img(src="./assets/react-snap.png", alt="React Snap usa Puppeteer para renderizar la App").clean-img.height40
 
   section
     h4 Usos de Puppeteer: Scrapping
