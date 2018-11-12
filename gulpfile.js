@@ -1,6 +1,7 @@
 const { src, dest, watch, series, parallel } = require('gulp')
 const pug = require('gulp-pug')
 const browserSync = require('browser-sync')
+const ghPages = require('gulp-gh-pages')
 
 const OUTPUT_DIR = "./public"
 
@@ -24,6 +25,9 @@ const images = () => src([
 
 const build = parallel(views, reveal, images)
 
+const deploy = () => src(`${OUTPUT_DIR}/**/*`)
+  .pipe(ghPages())
+
 const serve = () => {
   const server = browserSync.create()
 
@@ -46,5 +50,6 @@ module.exports = {
   views,
   reveal,
   build,
-  serve: series(build, serve)
+  serve: series(build, serve),
+  deploy: series(build, deploy)
 }
