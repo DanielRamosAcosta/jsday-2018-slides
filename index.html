@@ -1,0 +1,459 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title></title><meta name="description" content="Human Readable E2E tests"><meta name="author" content="Daniel Ramos"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="css/reveal.css"><link rel="stylesheet" href="css/theme/white.css"><style>/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+</style><style>@media print {
+  h1, h2, h3, h4, h5, h6, p, u, b, a, ul, li {
+    color: black !important;
+  }
+}
+
+.clean-img {
+  background: transparent !important;
+  border: none !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.marginSides2 { margin-left: 2vw !important; margin-right: 2vw !important; }
+
+.height1 { height: 1vh }
+.height2 { height: 2vh }
+.height3 { height: 3vh }
+.height4 { height: 4vh }
+.height5 { height: 5vh }
+.height6 { height: 6vh }
+.height7 { height: 7vh }
+.height8 { height: 8vh }
+.height9 { height: 9vh }
+.height10 { height: 10vh }
+.height15 { height: 15vh }
+.height20 { height: 20vh }
+.height25 { height: 25vh }
+.height30 { height: 30vh }
+.height35 { height: 35vh }
+.height40 { height: 40vh }
+.height45 { height: 45vh }
+.height50 { height: 50vh }
+.height60 { height: 60vh }
+.height70 { height: 70vh }
+
+.width1 { width: 1vw }
+.width5 { width: 5vw }
+
+.fontx2 { font-size: 1.5em !important }
+
+.flex { display: flex }
+
+.center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul.without-dot {
+  list-style-type: none;
+}
+
+span.inline, a.inline {
+  font-family: monospace;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: #f0f0f0;
+  font-size: 0.8em;
+}
+
+pre {
+  width: 90vw
+}
+
+code {
+  width: 100%
+}
+
+.slides {
+  width: auto !important;
+}
+</style></head><body><div class="reveal"><div class="slides"><section><section data-timing="20"><h3>Human Readable E2E Testing</h3><h5>JSDay Canarias 2018</h5><img class="height35" src="./assets/puppeteer-execution.gif"></section><section data-timing="20"><h2>Domingo a las 10 AM?</h2><img class="height40" src="./assets/sleeping.gif" alt="Quiero volver a la cama"></section><section><img class="height40" src="./assets/squats.gif" alt="Sentadillas!"><p>Ben Ilegbodu</p></section><section><img class="height25" src="./assets/yo.jpg" alt="Mi Careto"><h4><a href="https://github.com/DanielRamosAcosta">@DanielRamosAcosta</a></h4></section><section><h4><div class="center-center"><a href="https://www.leanmind.es/es/"><img class="clean-img height15" src="./assets/leanmind-logo.svg" alt="Lean Mind"></a><div class="width1"></div></div></h4><img class="height40" src="./assets/lean-mind-team.jpg" alt="Foto de equipazo"></section><section><div class="center-center"><img class="clean-img height10" src="./assets/react-logo.png" alt="React"><div class="width5"></div><span>😍</span><div class="width5"></div><img class="clean-img height10" src="./assets/redux-logo.png" alt="Redux"></div></section><section><img class="height40" src="./assets/bostom-dynamics-atlas.gif" alt="Robot haciendo cosas guays"></section><section><img class="height40" src="./assets/robot-fail.gif" alt="Robot fallando miserablemente"></section><section><ol class="fontx2"><li>🤖 Puppeteer</li><li>🥒 Cucumber</li><li>🥒 + 🤖</li></ol></section></section><section><section><h2>Pupeteer</h2><img class="clean-img height20" src="./assets/puppeteer-logo.png" alt="Puppeteer"></section><section><h3>Chrome Devtools</h3><img class="height40" src="./assets/devtools.png" alt="Captura de la ventana de depuración del Chrome"></section><section><h3>Chrome Devtools</h3><img class="height40" src="./assets/devtools-animation.gif"></section><section><h3>Chrome Devtools</h3><img class="height40" src="./assets/devtools-coverage.gif"></section><section><img class="clean-img height20" src="./assets/chromium-logo.svg" alt="Chromium"><img class="clean-img height20" src="./assets/devtools-logo.png" alt="Devtools"><img class="clean-img marginSides2 height20" src="./assets/bidirectional-arrow.svg" alt="Flecha bidireccional"><img class="clean-img height20 fragment" src="./assets/vscode-logo.svg" alt="VS Code Logo"><pre class="fragment"><code>./chrome --remote-debugging-port=9222
+</code></pre></section><section><img class="clean-img height20" src="./assets/nodejs-logo.svg" alt="Node.js"><img class="clean-img height20" src="./assets/devtools-logo.png" alt="Devtools"><img class="clean-img marginSides2 height20" src="./assets/bidirectional-arrow.svg" alt="Flecha bidireccional"><img class="clean-img height20" src="./assets/vscode-logo.svg" alt="VS Code Logo"><pre><code>./node --inspect miscript.js
+</code></pre></section><section><div class="center-center"><img class="clean-img height20" src="./assets/docker-node.svg" alt="Dockerized Node.js App"><img class="clean-img height20" src="./assets/devtools-logo.png" alt="Devtools"><img class="clean-img marginSides2 height20" src="./assets/bidirectional-arrow.svg" alt="Flecha bidireccional"><img class="clean-img height15" src="./assets/vscode-logo.svg" alt="VS Code Logo"></div></section><section><div class="center-center"><img class="clean-img height20" src="./assets/docker-node.svg" alt="Dockerized Node.js App"><img class="clean-img height20" src="./assets/devtools-logo.png" alt="Devtools"><img class="clean-img marginSides2 height20" src="./assets/bidirectional-arrow.svg" alt="Flecha bidireccional"><img class="clean-img height15" src="./assets/chromium-logo.svg" alt="Chrome"></div></section><section><img class="clean-img height35" src="./assets/chrome-inspector.png" alt="Chrome"></section><section><h4>Electron y React Native también implementan el protocolo</h4><div class="center-center"><img class="clean-img height20" src="./assets/electron-logo.svg" alt="Electron"><div class="width5"></div><img class="clean-img height20" src="./assets/react-logo.svg" alt="React"></div></section><section><img src="./assets/chromedevtools-screenshot-api.png" alt="Documentación de la API de captura de pantalla"><p><a class="inline" href="https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot">chromedevtools.github.io/devtools-protocol</a></p></section><section><pre><code class="javascript">// Abrir Chrome con `--remote-debugging-port=9222`
+// Obtener el endpoint de la pestaña en: http://localhost:9222/json
+const ws = new WebSocket("ws://localhost:9222/devtools/page/712C72EAA9E9269F87B6B8087DE886D5")
+
+ws.on("open", () => {
+  ws.send(JSON.stringify({
+    id: 1,
+    method: "Page.captureScreenshot"
+  }))
+})
+
+ws.on("message", responseStr => {
+  const response = JSON.parse(responseStr)
+  fs.writeFileSync("./micaptura.png", response.result.data, "base64")
+})
+</code></pre><a class="inline" href="http://bit.ly/jsday2018-pptr-screensot">bit.ly/jsday2018-pptr-screensot</a></section><section><img class="clean-img height60" src="./assets/chrome-remote-interface.png" alt="Chrome Remote Interface"></section><section><img class="clean-img height20" src="./assets/chromium-logo.svg" alt="Chromium"><img class="clean-img height20" src="./assets/devtools-logo.png" alt="Devtools"><img class="clean-img marginSides2 height20" src="./assets/bidirectional-arrow.svg" alt="Flecha bidireccional"><img class="clean-img height20" src="./assets/puppeteer-logo.png" alt="Puppeteer"></section><section><pre><code class="javascript">const puppeteer = require('puppeteer');
+
+(async () => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto('https://example.com');
+  await page.screenshot({path: 'example.png'});
+
+  await browser.close();
+})();
+</code></pre></section><section><h3>Ejemplos!</h3></section><section><h4>Usos de Puppeteer: Exportar a PDF</h4><pre><code class="javascript">await page.goto('http://localhost:3000')
+await page.pdf({
+  path: 'CV Daniel Ramos.pdf',
+  printBackground: true,
+  margin: {
+    top: '1.016cm',
+    right: '1.016cm',
+    bottom: '1.016cm',
+    left: '1.016cm'
+  }
+})
+
+await browser.close()
+</code></pre><a class="inline" href="http://bit.ly/jsday2018-pptr-pdf-export">bit.ly/jsday2018-pptr-pdf-export</a></section><section><h4>Usos de Puppeteer: SSR</h4><img class="clean-img height40" src="./assets/react-snap.png" alt="React Snap usa Puppeteer para renderizar la App"></section><section><h4>Usos de Puppeteer: Scrapping</h4><div><img class="height40" src="./assets/harvest-report.gif"></div><a class="inline" href="http://bit.ly/jsday2018-pptr-harvest">bit.ly/jsday2018-pptr-harvest</a></section><section><h4>Usos de Puppeteer: Lighthouse<pre><code class="javascript">const url = 'https://github.com/trending'
+const browser = await puppeteer.launch({ headless: false, defaultViewport: null})
+const { lhr } = await lighthouse(url, {
+  port: (new URL(browser.wsEndpoint())).port,
+  output: 'json',
+  logLevel: 'info',
+})
+
+const output = Object.values(lhr.categories)
+  .map(c => `* ${c.title}: ${c.score}`).join('\n')
+console.log(output)</code></pre><pre><code>* Performance: 0.77
+* Progressive Web App: 0.58
+* Accessibility: 0.81
+* Best Practices: 0.93
+* SEO: 0.82
+</code></pre></h4><a class="inline" href="http://bit.ly/jsday2018-pptr-lighthouse">bit.ly/jsday2018-pptr-lighthouse</a></section><section><h4>Usos de Puppeteer: Carlo</h4><div><img class="clean-img height50" src="./assets/carlo.png" alt="React Snap usa Puppeteer para renderizar la App"></div><a class="inline" href="https://github.com/GoogleChromeLabs/carlo">https://github.com/GoogleChromeLabs/carlo</a></section><section><h3>Otros usos</h3><ul><li>Sacar capturas a componentes en StoryBook</li><li>PaaS (PDF as a Service)</li><li>Usar el sintentizador de voz integrado</li><li>Extraer métricas (cubrimiento, rendimiento...)</li></ul></section><section><h3>Downsides</h3><ul><li>Sólo funciona con Chrome</li><li>La API sigue siendo bastante bajo nivel</li></ul></section></section><section><section><h2>Cucumber</h2><img class="clean-img height20" src="./assets/cucumber-logo.png" alt="Cucumber"></section><section><h3>Que desventajas tienen otros test runners?</h3><pre><code class="javascript">context('Navigation', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:8080')
+    cy.get('.navbar-nav').contains('Commands').click()
+    cy.get('.dropdown-menu').contains('Navigation').click()
+  })
+
+  it('cy.go() - go back or forward in the browser\'s history', () => {
+    // https://on.cypress.io/go
+
+    cy.location('pathname').should('include', 'navigation')
+
+    cy.go('back')
+    cy.location('pathname').should('not.include', 'navigation')
+
+    cy.go('forward')
+    cy.location('pathname').should('include', 'navigation')
+
+    // clicking back
+    cy.go(-1)
+    cy.location('pathname').should('not.include', 'navigation')
+
+    // clicking forward
+    cy.go(1)
+    cy.location('pathname').should('include', 'navigation')
+  })
+</code></pre></section><section><h3>Tests legibles por no programadores</h3><h3>Gherkin</h3><pre><code class="gherkin">Scenario: See the genres of Pulp Fiction
+  Given I am logged in
+  When I navigate to the movie details page of "Pulp Fiction"
+  Then I see "Thriller" at right sidebar in the Genre list
+  And I see "Crime" at right sidebar in the Genre list
+</code></pre></section><section><h3>Soporte multidioma</h3><pre><code class="gherkin"># language: es
+
+Escenario: Ver el género de Pulp Fiction
+  Dado que he iniciado sesión
+  Cuando navego a los detalles de la película "Pulp Fiction"
+  Entonces veo "Thriller" en la lista de géneros de la barra lateral
+  Y veo "Crimen" en la lista de géneros de la barra lateral</code></pre><a class="inline" href="https://docs.cucumber.io/gherkin/reference/#spoken-languages">docs.cucumber.io/gherkin/reference/#spoken-languages</a></section><section><h3>Soporte multidioma</h3><pre><code class="gherkin"># language: em
+
+📕: See the genres of Pulp Fiction
+  😐 I am logged in
+  🎬 I navigate to the movie details page of "Pulp Fiction"
+  🙏 I see "Thriller" at right sidebar in the Genre list
+  😂 I see "Crime" at right sidebar in the Genre list
+</code></pre><a class="inline" href="https://docs.cucumber.io/gherkin/reference/#spoken-languages">docs.cucumber.io/gherkin/reference/#spoken-languages</a></section><section><h3>Y el código donde está?</h3><img class="height40" src="assets/magic.gif" autoplay loop></section><section><h3>Y el código dónde está?</h3><pre><code class="javascript">Then('Then I see {string} at right sidebar in the Genre list', async (genreName) => {
+  // throw si algo va mal
+})
+</code></pre><pre><code class="javascript">Then(/Then I see "(\w+?)" at right sidebar in the Genre list/, async (genreName) => {
+  // throw si algo va mal
+})</code></pre></section></section><section><section><h2>Puppeteer y Cucumber</h2><div class="center-center"><img class="clean-img height10" src="./assets/puppeteer-logo.png" alt="Puppeteer"><div class="width5"></div><img class="clean-img height10" src="./assets/cucumber-logo.png" alt="Cucumber"></div><div><img class="clean-img height20" src="./assets/cucumber-y-puppeteer.gif" alt="Cucumber y Puppeteer"></div></section><section><h3>¿Qué son Tests E2E?</h3><img class="height35" src="./assets/puppeteer-execution.gif"></section><section><img class="clean-img height50" src="./assets/tests-e2e-mal.png" alt="Cucumber"></section><section><h3>Ejemplo funcional en Gitlab</h3><a class="inline" href="http://bit.ly/jsday2018-pptr-e2e">bit.ly/jsday2018-pptr-e2e</a></section><section><h3>Organizando el proyecto</h3><img class="cleamn-img height35" src="./assets/cucumber-puppeteer-estructura.png" alt="Estructura de directorio con Cucumber y Puppeteer"></section><section><h3>¿Dónde incializamos Puppeteer?</h3><img class="clean-img height35" src="./assets/cucumber-puppeteer-world.png" alt="Fichero steps"></section><section><h3>¿Dónde incializamos Puppeteer?</h3><h3>En "El Mundo"</h3><pre><code>class CustomWorld {
+  _browser = scope.browser
+  _page = null
+
+  async getPage () {
+    if (!this._page) {
+      this._page = await this._browser.newPage();
+    }
+    return this._page
+  }
+
+  async closePage () {
+    if (this._page) {
+      await this._page.close()
+      this._page = null
+    }
+  }
+}
+</code></pre></section><section><h3>Dónde están los steps?</h3><img class="clean-img height35" src="./assets/cucumber-puppeteer-steps.png" alt="Fichero steps"></section><section><h3>Un paso una función</h3><pre><code class="javascript">Given('I am at the {word} page', navigateTo)
+When('I enter my username {string} and my password {string}', enterUsernameAndPassword)
+Then('I see the {string} page', currentPageIs);
+</code></pre></section><section><h3>Acciones y Aserciones</h3><img class="clean-img height35" src="./assets/cucumber-puppeteer-actions-assertions.png" alt="Fichero steps"><ul><li>Acciones: Navegar a una página, hacer click en un botón, rellenar un formulario</li><li>Aserciones: Veo la página de login, veo 4 tarjetas</li></ul></section><section><h3>Hacer click en algún sitio</h3><pre><code class="javascript">async function clickElement (ctx, selectorScope, elementKey) {
+  const selector = getSelector(selectorScope, elementKey)
+
+  const page = await ctx.getPage()
+  await page.click(selector)
+}
+// steps.js
+Then('I click the {string}', (ctx, elementKey) => clickElement(ctx, selectors.header.rightMenu, elementKey))
+</code></pre></section><section><h3>Hacer click en algún sitio</h3><pre><code class="javascript">function clickElement (selectorScope) {
+  return async function (ctx, elementKey) {
+    const selector = getSelector(selectorScope, elementKey)
+
+    const page = await ctx.getPage()
+    await page.click(selector)
+  }
+}
+
+const clickElementAtHeaderRightMenu = clickElement(selectors.header.rightMenu)
+// steps.js
+Then('I click the "Login Button"', clickElementAtHeaderRightMenu)
+</code></pre></section><section><h3>Hacer click en algún sitio</h3><pre><code class="javascript">const clickElement = selectorScope => async (ctx, elementKey) => {
+  const selector = getSelector(selectorScope, elementKey)
+
+  const page = await ctx.getPage()
+  await page.click(selector)
+}
+const clickElementAtHeaderRightMenu = clickElement(selectors.header.rightMenu)
+// steps.js
+Then('I click the "Login Button"', clickElementAtHeaderRightMenu)
+</code></pre></section><section><h3>Combinar varios pasos en uno solo</h3><pre><code class="javascript">const typeUsernameAtLogin = typeAt(selectors.login.usernameInput)
+const typePasswordAtLogin = typeAt(selectors.login.passwordInput)
+
+export const enterUsernameAndPassword = joinSteps(
+  typeUsernameAtLogin,
+  typePasswordAtLogin
+)
+// steps.js
+When('I enter my username {string} and my password {string}', enterUsernameAndPassword)
+</code></pre></section><section><h3>Combinar varios pasos en uno solo</h3><pre><code class="gherkin">Scenario: User logs in and sees its profile
+  Given I am at the home page
+  When I click in "Login" at the header
+  And I enter my username "testuser123999" and my password "foobar123"
+  And I press the "submit" button at the form
+  Then I see the "Profile" page
+  And I save a screenshot at "profile-new-user.png"
+</code></pre></section><section><h3>Combinar varios pasos en uno solo</h3><pre><code class="gherkin">Scenario: Reach the Add New Movie page
+  Given the user has logged in
+  # (...)
+</code></pre></section><section><h3>Combinar varios pasos en uno solo</h3><pre><code class="javascript">Given('the user has logged in', withLoggedUser)
+
+async function withLoggedUser (ctx) {
+  await navigateTo(ctx, 'login'),
+  await enterUsernameAndPassword(ctx, 'testuser123999', 'foobar123')
+  await pressSubmit(ctx, 'submit')
+  await sleep(ctx, 1)
+}
+</code></pre></section><section><h3>Accedemos al mundo a través del this</h3><pre><code class="javascript">Then('I save a screenshot at {string}', async function(page) {
+  console.log(this.page) // Ok!
+})
+</code></pre><pre><code class="javascript">Then('I save a screenshot at {string}', async (page) => {
+  console.log(this.page) // Error!
+})
+
+</code></pre></section><section><h3>No hay soporte para distribución de argumentos</h3><pre><code class="javascript">Then('I save a screenshot at {string}', async function(...args) {
+  console.log(args)
+})</code></pre><pre><code>× And I save a screenshot at "profile-new-user.png" # features\support\steps.js:21
+    function has 0 arguments, should have 1 (if synchronous or returning a promise) or 2 (if accepting a callback)
+</code></pre></section><section><h3>Arreglando la pérdida this y la longitud de argumentos</h3><pre><code class="javascript">export const bind0 = fn => function () {
+  return fn(this)
+}
+
+export const bind1 = fn => function (arg1) {
+  return fn(this, arg1)
+}
+
+export const bind2 = fn => function (arg1, arg2) {
+  return fn(this, arg1, arg2)
+}
+
+export const bind3 = fn => function (arg1, arg2, arg3) {
+  return fn(this, arg1, arg2, arg3)
+}
+</code></pre></section><section><h3>Arreglando la pérdida this y la longitud de argumentos</h3><pre><code>Given('I am at the {word} page', bind1(navigateTo))
+
+export async function navigateTo(ctx, pageKey) {
+  const page = await ctx.getPage()
+  await page.goto(getUrl(navigation, pageKey))
+}
+</code></pre></section><section><h3>Creando selectores fáciles de tracear</h3><img src="assets/traceable-selectors.png" alt="Flecha señalando al login en la cabecera"><pre><code>page.click(selectors.header.rightMenu.Login)
+</code></pre></section><section><h3>Creando selectores fáciles de tracear</h3><pre><code>export const selectors = {
+  title: 'title',
+  header: nestedSelector('header', {
+    rightMenu: nestedSelector('.right .primary', {
+      'plus icon': nestedSelector('li:first-child > div', {
+        'Add New Movie': 'a[href="/movie/new"]'
+      }),
+      Login: 'a[href="/login"]',
+      'Sign Up': 'a[href="/account/signup"]',
+    })
+  }),
+  login: {
+    usernameInput: '#username',
+    passwordInput: '#password'
+  },
+  movieDetails: {
+    topBilled: nestedSelector('section.top_billed', {
+      eachActor: nestedSelector('.card', {
+        actorName: 'p a',
+        characterName: '.character',
+      })
+    }),
+    eachGenre: 'section.genres li'
+  },
+  commonElements: {
+    submit: `main input[type="submit"]`
+  }
+};
+</code></pre></section><section><h3>Creando selectores fáciles de tracear</h3><pre><code>console.log(selectors.header.rightMenu.Login)
+// 'header .right .primary a[href="/login"]'
+</code></pre></section><section><h3>Evitar seleccionar por elementos del DOM / clases</h3><pre class="fragment"><code class="jsx">const MyButton = () => (
+  <div data-test-id="super-boton">
+    <button>Soy un Botón</button>
+  </div>
+)</code></pre><a class="inline fragment" href="https://www.npmjs.com/package/babel-plugin-jsx-remove-data-test-id">babel-plugin-jsx-remove-data-test-id</a></section><section><h3>Ventajas con Puppeteer</h3></section><section><h3>Ventajas con Puppeteer</h3><h4>Coverage out of the Box</h4><pre><code>// getPage
+await Promise.all([
+  this._page.coverage.startJSCoverage(),
+  this._page.coverage.startCSSCoverage()
+]);
+
+// closePage
+const [jsCoverage, cssCoverage] = await Promise.all([
+  this._page.coverage.stopJSCoverage(),
+  this._page.coverage.stopCSSCoverage(),
+]);
+pti.write(jsCoverage)
+</code></pre></section><section><h3>Ventajas con Puppeteer</h3><h4>Coverage out of the Box</h4><img src="assets/coverage.png" alt="Captura del cubrimiento de la página web"></section><section><h3>Ventajas con Puppeteer</h3><h4>Obtener perfil de rendimiento</h4><img src="assets/preformance-profile.png" alt="Cargar perfil de rendimiento"></section><section><h3>Ventajas con Puppeteer</h3><h4>Obtener perfil de rendimiento</h4><pre><code class="gherkin">Scenario: # ...
+  Given I start tracing
+  # ...
+  Then I stop tracing
+
+</code></pre></section><section><h3>Ventajas con Puppeteer</h3><h4>Interceptar peticiones de red</h4><pre><code class="javascript">await page.setRequestInterception(true);
+page.on('request', interceptedRequest => {
+  if (interceptedRequest.url().endsWith('analytics.js')) {
+    interceptedRequest.abort()
+  } else{
+    interceptedRequest.continue()
+  }
+})</code></pre></section><section><h3>Ventajas con Puppeteer</h3><h3>Depuración</h3><pre><code class="gherkin">Then I place a breakpoint in "funcionesB4.js" at line number 97
+</code></pre><a class="inline" href="http://bit.ly/jsday2018-pptr-breakpoint">bit.ly/jsday2018-pptr-breakpoint</a></section></section><section><h3>Recursos</h3><ul><li><a href="https://www.youtube.com/watch?v=Wapb_LIS45E">End to End Testing Single Page Apps & APIs with Cucumber.js and Puppeteer</a></li><li>Iconos de <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a></li><li>Logos de <a href="https://seeklogo.com">Seek Logo</a></li><li>Imagen del depurador de <a href="http://https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27">Debugging Node.js with Chrome DevTools</a></li><li>Gifs de GIPHY</li></ul></section><section><h3>Conclusión</h3></section><section><h3>¿Preguntas?</h3></section><section><h3>¡A por el café!</h3><img src="assets/coffee-time.gif" alt=""></section></div></div><script src="lib/js/head.min.js"></script><script src="js/reveal.js"></script><script>Reveal.initialize({
+  defaultTiming: 120,
+  history: true,
+  dependencies: [
+    { src: 'plugin/highlight/highlight.js', async: true, callback: () => hljs.initHighlightingOnLoad()},
+    { src: 'plugin/zoom-js/zoom.js', async: true },
+    { src: 'plugin/notes/notes.js', async: true },
+  ]
+})</script><script>if( window.location.search.match( /print-pdf/gi ) ) {
+  var link = document.createElement( 'link' );
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = 'css/print/pdf.css';
+  document.getElementsByTagName( 'head' )[0].appendChild( link );
+}</script></body></html>
